@@ -8,11 +8,14 @@ const DEFAULT_SHIPPING_COST = 50;
 
 export default function DashboardCheckout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const { cartItems } = useCart();
+  const { cartItems, removeFromCart } = useCart();
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
   const [couponMessage, setCouponMessage] = useState("");
-  const [showCoupon, setShowCoupon] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderNumber, setOrderNumber] = useState("");
+  const [selectedPayment, setSelectedPayment] = useState("cod");
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [billingInfo, setBillingInfo] = useState({
     email: "",
     firstName: "",
@@ -28,8 +31,6 @@ export default function DashboardCheckout() {
   });
 
   const handleCouponApply = async () => {
-    // TODO: Replace with actual API call to validate coupon
-    // const response = await fetch('/api/validate-coupon', { method: 'POST', body: JSON.stringify({ coupon }) });
     setCouponMessage("Coupon validation requires backend API");
   };
 
@@ -43,8 +44,107 @@ export default function DashboardCheckout() {
     setBillingInfo({ ...billingInfo, [id]: value });
   };
 
+  const generateOrderNumber = () => {
+    const timestamp = Date.now().toString(36).toUpperCase();
+    const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+    return `ORD-${timestamp}${random}`;
+  };
+
+  const handlePlaceOrder = () => {
+    if (!termsAccepted) {
+      alert("Please accept the terms and conditions");
+      return;
+    }
+
+    if (!billingInfo.email || !billingInfo.firstName || !billingInfo.lastName || !billingInfo.phone) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    const newOrderNumber = generateOrderNumber();
+    setOrderNumber(newOrderNumber);
+    setOrderPlaced(true);
+
+    // Clear cart after successful order
+    cartItems.forEach((item) => {
+      removeFromCart(item.id);
+    });
+  };
+
   const toggleSidebar = () => setSidebarCollapsed(!sidebarCollapsed);
 
+  // Order Success Screen
+  if (orderPlaced) {
+    return (
+      <div className="orrdr_dashboard">
+        <SideLeft collapsed={sidebarCollapsed} />
+        <div className={`right-area-body-content ${sidebarCollapsed ? "collapsed" : ""}`}>
+          <Header onToggleSidebar={toggleSidebar} />
+          <div className="body-root-inner">
+            <div className="vendor-grid-top-search-area">
+              <h4 className="title">Order Confirmation</h4>
+            </div>
+
+            <div className="card" style={{ padding: "40px", textAlign: "center", maxWidth: "600px", margin: "0 auto" }}>
+              <div style={{ width: "80px", height: "80px", borderRadius: "50%", background: "#DCFCE7", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
+                <i className="fa-solid fa-check" style={{ fontSize: "36px", color: "#22C55E" }} />
+              </div>
+              <h2 style={{ marginBottom: "10px", color: "#1F2937" }}>Thank You For Your Order!</h2>
+              <p style={{ color: "#6B7280", marginBottom: "20px" }}>Your order has been placed successfully.</p>
+
+              <div style={{ background: "#F9FAFB", padding: "20px", borderRadius: "8px", marginBottom: "20px" }}>
+                <p style={{ margin: "0 0 8px", fontSize: "14px", color: "#6B7280" }}>Order Number</p>
+                <p style={{ margin: 0, fontSize: "20px", fontWeight: 700, color: "#DC2626" }}>{orderNumber}</p>
+              </div>
+
+              <div style={{ textAlign: "left", padding: "20px", background: "#F9FAFB", borderRadius: "8px", marginBottom: "20px" }}>
+                <h5 style={{ marginBottom: "15px", fontSize: "16px", fontWeight: 600 }}>Order Details</h5>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+                  <span style={{ color: "#6B7280" }}>Name:</span>
+                  <span>{billingInfo.firstName} {billingInfo.lastName}</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+                  <span style={{ color: "#6B7280" }}>Email:</span>
+                  <span>{billingInfo.email}</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+                  <span style={{ color: "#6B7280" }}>Phone:</span>
+                  <span>{billingInfo.phone}</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+                  <span style={{ color: "#6B7280" }}>Payment Method:</span>
+                  <span style={{ textTransform: "capitalize" }}>{selectedPayment === "cod" ? "Cash On Delivery" : selectedPayment}</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "16px", fontWeight: 700, borderTop: "1px solid #E5E7EB", paddingTop: "10px", marginTop: "10px" }}>
+                  <span>Total:</span>
+                  <span style={{ color: "#DC2626" }}>₹{total.toFixed(2)}</span>
+                </div>
+              </div>
+
+              <p style={{ color: "#6B7280", fontSize: "14px", marginBottom: "20px" }}>
+                A confirmation email will be sent to <strong>{billingInfo.email}</strong>
+              </p>
+
+              <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="/dashboard/invoice" className="rts-btn btn-primary" style={{ padding: "10px 24px", textDecoration: "none" }}>
+                  <i className="fa-regular fa-file-invoice" style={{ marginRight: "8px" }} />
+                  View Invoice
+                </a>
+                <a href="/dashboard/order-history" className="rts-btn btn-primary" style={{ padding: "10px 24px", textDecoration: "none" }}>
+                  View Order History
+                </a>
+                <a href="/dashboard/shop-layout" className="rts-btn btn-primary border-only" style={{ padding: "10px 24px", textDecoration: "none" }}>
+                  Continue Shopping
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Checkout Form
   return (
     <div className="orrdr_dashboard">
       <SideLeft collapsed={sidebarCollapsed} />
@@ -73,7 +173,7 @@ export default function DashboardCheckout() {
                   </button>
                 </div>
                 {couponMessage && (
-                  <p style={{ color: coupon === "12345" ? "green" : "red", marginTop: "10px", fontSize: "14px" }}>
+                  <p style={{ color: "#666", marginTop: "10px", fontSize: "14px" }}>
                     {couponMessage}
                   </p>
                 )}
@@ -170,20 +270,40 @@ export default function DashboardCheckout() {
 
                 <div style={{ marginBottom: "15px" }}>
                   <h6 style={{ marginBottom: "10px", fontSize: "14px", fontWeight: 600 }}>Payment Method</h6>
-                  {["Direct Bank Transfer", "Check Payments", "Cash On Delivery", "Paypal"].map((method, i) => (
-                    <label key={i} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "8px 0", fontSize: "14px", cursor: "pointer" }}>
-                      <input type="radio" name="payment" defaultChecked={i === 0} />
-                      {method}
+                  {[
+                    { id: "cod", label: "Cash On Delivery" },
+                    { id: "bank", label: "Direct Bank Transfer" },
+                    { id: "check", label: "Check Payments" },
+                    { id: "paypal", label: "Paypal" },
+                  ].map((method) => (
+                    <label key={method.id} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "8px 0", fontSize: "14px", cursor: "pointer" }}>
+                      <input
+                        type="radio"
+                        name="payment"
+                        checked={selectedPayment === method.id}
+                        onChange={() => setSelectedPayment(method.id)}
+                      />
+                      {method.label}
                     </label>
                   ))}
                 </div>
 
                 <label style={{ display: "flex", alignItems: "flex-start", gap: "8px", marginBottom: "15px", fontSize: "13px", cursor: "pointer" }}>
-                  <input type="checkbox" required style={{ marginTop: "3px" }} />
+                  <input
+                    type="checkbox"
+                    checked={termsAccepted}
+                    onChange={(e) => setTermsAccepted(e.target.checked)}
+                    style={{ marginTop: "3px" }}
+                  />
                   I have read and agree to the terms and conditions
                 </label>
 
-                <button className="rts-btn btn-primary" style={{ width: "100%", padding: "12px", border: "none", cursor: "pointer", fontSize: "15px" }}>
+                <button
+                  onClick={handlePlaceOrder}
+                  className="rts-btn btn-primary"
+                  style={{ width: "100%", padding: "12px", border: "none", cursor: "pointer", fontSize: "15px" }}
+                  disabled={cartItems.length === 0}
+                >
                   Place Order
                 </button>
               </div>

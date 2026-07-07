@@ -68,6 +68,7 @@ const menuItems: MenuItem[] = [
     children: [
       { title: "Cart", href: "/dashboard/checkout" },
       { title: "Checkout", href: "/dashboard/checkout" },
+      { title: "Invoice", href: "/dashboard/invoice" },
       { title: "Track Order", href: "/dashboard/track-order" },
     ],
   },
