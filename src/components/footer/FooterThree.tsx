@@ -166,7 +166,7 @@ function FooterThree() {
                                 </div>
                                 <div className="payment-access">
                                     <span>Payment Accepts:</span>
-                                    <img src="assets/images/payment/06.png" alt="" />
+                                    <img src="/assets/images/payment/06.png" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -179,3 +179,4 @@ function FooterThree() {
 }
 
 export default FooterThree
+

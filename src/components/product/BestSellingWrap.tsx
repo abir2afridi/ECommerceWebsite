@@ -190,3 +190,4 @@ const WeeklyBestSelling: React.FC = () => {
 }
 
 export default WeeklyBestSelling
+

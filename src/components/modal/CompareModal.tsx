@@ -200,3 +200,5 @@ const ModalComponent: React.FC<ModalProps> = ({ show, handleClose }) => {
 };
 
 export default ModalComponent;
+
+

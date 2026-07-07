@@ -110,10 +110,10 @@ const menuItems: MenuItem[] = [
     title: "Pages",
     icon: "/assets/images-dashboard/icons/05.svg",
     children: [
-      { title: "About", href: "/about" },
-      { title: "Privacy Policy", href: "/privacy-policy" },
-      { title: "Cookies Policy", href: "/cookies-policy" },
-      { title: "Terms & Condition", href: "/terms-condition" },
+      { title: "About", href: "/dashboard/about" },
+      { title: "Privacy Policy", href: "/dashboard/privacy-policy" },
+      { title: "Cookies Policy", href: "/dashboard/cookies-policy" },
+      { title: "Terms & Condition", href: "/dashboard/terms-condition" },
     ],
   },
   {

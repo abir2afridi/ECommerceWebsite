@@ -35,3 +35,5 @@ const CounterArea = () => {
 };
 
 export default CounterArea;
+
+

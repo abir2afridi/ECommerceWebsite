@@ -89,3 +89,5 @@ export const WishlistProvider = ({ children }: { children: React.ReactNode }) =>
     </WishlistContext.Provider>
   );
 };
+
+

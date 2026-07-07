@@ -90,3 +90,5 @@ const WishList: React.FC = () => {
 };
 
 export default WishList;
+
+

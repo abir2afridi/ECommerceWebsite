@@ -181,3 +181,5 @@ const ProductDetails: React.FC<ModalProps> = ({
 };
 
 export default ProductDetails;
+
+
