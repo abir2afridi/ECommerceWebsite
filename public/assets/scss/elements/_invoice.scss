@@ -2,8 +2,8 @@
 
 // invoice area
 .invoice-main-wrapper-1{
-    margin-top: 120px;
-    padding: 50px;
+    margin-top: 40px;
+    padding: 30px;
     border-radius: 6px;
     background:  #f1f1f1;
     margin-bottom: 30px;
@@ -17,12 +17,12 @@
         .title{
             font-weight: 500;
             line-height: 1;
-            font-size: 48px;
+            font-size: 28px;
         }
         span{
             display: block;
-            font-size: 18px;
-            margin: 5px 0;
+            font-size: 13px;
+            margin: 3px 0;
         }
     }
 }
@@ -81,48 +81,51 @@
 
 
 .invoice-center-rts{
-    margin-top: 30px;
+    margin-top: 20px;
     thead{
         tr{
             th{
                 color: #4d4d4d;
-                padding: 15px 20px;
+                padding: 10px 15px;
                 border-color: #f1f1f1;
                 border-width: 0;
                 font-weight: 600;
+                font-size: 13px;
             }
         }
     }
     
     .item-desc-1{
-        padding: 12px 20px;
+        padding: 10px 15px;
     }
     td{
-        padding: 15px 20px;
+        padding: 10px 15px;
+        font-size: 13px;
     }
 }
 
 .invoice-area-bottom{
     text-align: center;
-    margin-top: 40px;
+    margin-top: 25px;
     .powerby{
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
         justify-content: center;
         p{
             margin-bottom: 0;
-            font-size: 32px;
+            font-size: 18px;
             font-weight: 500;
             color: var(--color-heading-1);
         }
         img{
-            max-width: 50px;
+            max-width: 35px;
         }
     }
     p{
         margin: 0;
-        margin-top: 20px;
+        margin-top: 15px;
+        font-size: 13px;
         font-weight: 400;
         color: var(--color-heading-1);
     }
