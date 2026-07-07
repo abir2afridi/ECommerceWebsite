@@ -1,0 +1,94 @@
+/* ===== Dark Theme Overrides ===== */
+
+html.dark-theme {
+  --color-white: #1f2430;
+  --color-heading-1: #e8eaed;
+  --color-body: #a7adb5;
+  --color-secondary: #f1f3f5;
+
+  body {
+    background: #161a22;
+    color: #a7adb5;
+  }
+
+  .dashboard-top-header {
+    background: #1f2430;
+    border-bottom: 1px solid #2c3340;
+  }
+
+  .sidebar_left {
+    background: #1f2430;
+    border-right: 1px solid #2c3340;
+  }
+
+  .right-area-body-content {
+    background: #161a22;
+  }
+
+  .body-root-inner {
+    background: #161a22;
+  }
+
+  .card,
+  .single-vendor-area,
+  .invoice-main-wrapper-1,
+  .rts-invoice-style-one,
+  .vendor-grid-top-search-area {
+    background: #1f2430 !important;
+    color: #e8eaed;
+  }
+
+  .table,
+  .table td,
+  .table th {
+    color: #e8eaed;
+  }
+
+  .table thead tr {
+    background: #2c3340 !important;
+  }
+
+  .single-menu-item .with-plus,
+  .single-menu-item > a {
+    color: #c7ccd4;
+  }
+
+  .single-menu-item .with-plus.active,
+  .mobile-menu-link.active,
+  .mobile-menu-link:hover {
+    color: #fff;
+    background: rgba(98, 157, 35, 0.18);
+  }
+
+  .single_action__haeader svg path {
+    fill: #c7ccd4;
+  }
+
+  .rts-side-nav-area-left .submenu {
+    background: #242a36;
+  }
+
+  input,
+  select,
+  textarea {
+    background: #2c3340 !important;
+    color: #e8eaed !important;
+    border-color: #3a4250 !important;
+  }
+
+  .bg_light-1 {
+    background: #1f2430 !important;
+  }
+
+  .rts-section-gap,
+  .rts-section-gap2 {
+    background: transparent;
+  }
+
+  .single-team-style-one,
+  .single-service-area-style-one,
+  .single-counter-area,
+  .single-short-service-area-start {
+    background: #242a36;
+  }
+}

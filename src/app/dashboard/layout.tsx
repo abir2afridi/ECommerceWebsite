@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 // import "../../../public-dashboard/assets/css/plugins.css";
 import "../../../public-dashboard/assets/css/table.css";
 import "../../../public-dashboard/assets/css/style.css";
+import { ThemeProvider } from "@/components/header/ThemeContext";
 
 
 const geistSans = Geist({
@@ -30,7 +31,9 @@ export default function RootLayout({
 }>) {
     return (
         <div className="dashboard-wrapper">
-            {children}
+            <ThemeProvider>
+                {children}
+            </ThemeProvider>
         </div>
     );
 }

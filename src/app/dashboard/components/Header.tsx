@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/components/header/CartContext';
+import { useTheme } from '@/components/header/ThemeContext';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -10,6 +11,7 @@ interface HeaderProps {
 export default function Header({ onToggleSidebar }: HeaderProps) {
   const { cartItems } = useCart();
   const cartCount = cartItems.filter(item => item.active).length;
+  const { theme, toggleTheme } = useTheme();
   const [activePopup, setActivePopup] = useState<string | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -292,6 +294,30 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
                 ))}
               </ul>
             </div>
+          </div>
+
+          {/* Theme Switcher */}
+          <div
+            className="single_action__haeader theme-switch"
+            onClick={toggleTheme}
+            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            style={{ cursor: 'pointer' }}
+          >
+            {theme === 'light' ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
+                  fill="#083A5E"
+                />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="4.5" fill="#FFC94D" />
+                <g stroke="#FFC94D" strokeWidth="1.6" strokeLinecap="round">
+                  <path d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77" />
+                </g>
+              </svg>
+            )}
           </div>
 
           {/* User Profile */}

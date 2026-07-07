@@ -19815,3 +19815,20 @@ li.has-dropdown .submenu li>a .badge {
 .single-payment .inner-content img {
   margin-left: -10px;
 }
+/* ===== Dark Theme Overrides ===== */
+html.dark-theme{--color-white:#1f2430;--color-heading-1:#e8eaed;--color-body:#a7adb5;--color-secondary:#f1f3f5;}
+html.dark-theme body{background:#161a22;color:#a7adb5;}
+html.dark-theme .dashboard-top-header{background:#1f2430;border-bottom:1px solid #2c3340;}
+html.dark-theme .sidebar_left{background:#1f2430;border-right:1px solid #2c3340;}
+html.dark-theme .right-area-body-content{background:#161a22;}
+html.dark-theme .body-root-inner{background:#161a22;}
+html.dark-theme .card,html.dark-theme .single-vendor-area,html.dark-theme .invoice-main-wrapper-1,html.dark-theme .rts-invoice-style-one,html.dark-theme .vendor-grid-top-search-area{background:#1f2430!important;color:#e8eaed;}
+html.dark-theme .table,html.dark-theme .table td,html.dark-theme .table th{color:#e8eaed;}
+html.dark-theme .table thead tr{background:#2c3340!important;}
+html.dark-theme .single-menu-item .with-plus,html.dark-theme .single-menu-item>a{color:#c7ccd4;}
+html.dark-theme .single-menu-item .with-plus.active,html.dark-theme .mobile-menu-link.active,html.dark-theme .mobile-menu-link:hover{color:#fff;background:rgba(98,157,35,0.18);}
+html.dark-theme .single_action__haeader svg path{fill:#c7ccd4;}
+html.dark-theme .rts-side-nav-area-left .submenu{background:#242a36;}
+html.dark-theme input,html.dark-theme select,html.dark-theme textarea{background:#2c3340!important;color:#e8eaed!important;border-color:#3a4250!important;}
+html.dark-theme .bg_light-1{background:#1f2430!important;}
+html.dark-theme .single-team-style-one,html.dark-theme .single-service-area-style-one,html.dark-theme .single-counter-area,html.dark-theme .single-short-service-area-start{background:#242a36;}
