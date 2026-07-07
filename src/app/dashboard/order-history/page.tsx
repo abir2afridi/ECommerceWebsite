@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import SideLeft from "../components/SideLeft";
 import Header from "../components/Header";
 
@@ -15,6 +16,7 @@ const orderHistoryData = [
 ];
 
 export default function OrderHistory() {
+  const router = useRouter();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
@@ -141,6 +143,7 @@ export default function OrderHistory() {
                         </td>
                         <td style={{ padding: "15px" }}>
                           <button
+                            onClick={() => router.push(`/dashboard/order-details?order=${order.orderNo}`)}
                             style={{
                               padding: "6px 12px",
                               border: "1px solid #ddd",

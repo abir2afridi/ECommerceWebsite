@@ -93,13 +93,35 @@ const menuItems: MenuItem[] = [
     href: "/dashboard/payment",
   },
   {
+    title: "Contact",
+    icon: "/assets/images-dashboard/icons/06.svg",
+    href: "/contact",
+  },
+  {
+    title: "Blog",
+    icon: "/assets/images-dashboard/icons/07.svg",
+    children: [
+      { title: "Blog List Left Sidebar", href: "/blog-list-left-sidebar" },
+      { title: "Blog List Right Sidebar", href: "/blog-list-right-sidebar" },
+      { title: "Blog Details", href: "/blog" },
+    ],
+  },
+  {
+    title: "Pages",
+    icon: "/assets/images-dashboard/icons/05.svg",
+    children: [
+      { title: "About", href: "/about" },
+      { title: "Privacy Policy", href: "/privacy-policy" },
+      { title: "Cookies Policy", href: "/cookies-policy" },
+      { title: "Terms & Condition", href: "/terms-condition" },
+    ],
+  },
+  {
     title: "User Profile",
     icon: "/assets/images-dashboard/icons/05.svg",
     children: [
       { title: "My Account", href: "/account" },
       { title: "Profile Setting", href: "/dashboard/profile-setting" },
-      { title: "Log In", href: "/dashboard/log-in" },
-      { title: "Registration", href: "/dashboard/registration" },
     ],
   },
 ];
