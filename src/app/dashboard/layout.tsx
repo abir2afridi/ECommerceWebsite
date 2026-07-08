@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../../../public-dashboard/assets/css/table.css";
 import "../../../public-dashboard/assets/css/style.css";
 import { ThemeProvider } from "@/components/header/ThemeContext";
+import GlobalCartSidebar from "./components/GlobalCartSidebar";
 
 
 const geistSans = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({
         <div className="dashboard-wrapper">
             <ThemeProvider>
                 {children}
+                <GlobalCartSidebar />
             </ThemeProvider>
         </div>
     );

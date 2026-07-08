@@ -2,7 +2,6 @@
 import { useState } from "react";
 import SideLeft from "../components/SideLeft";
 import Header from "../components/Header";
-import CartSidebar from "../components/CartSidebar";
 import { useCart } from "@/components/header/CartContext";
 
 export default function ShopDetails() {
@@ -11,7 +10,6 @@ export default function ShopDetails() {
   const [activeImage, setActiveImage] = useState("/assets/images/grocery/01.jpg");
   const [selectedSize, setSelectedSize] = useState("01 Miter");
   const [selectedWeight, setSelectedWeight] = useState("5 kg");
-  const [cartOpen, setCartOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
 
@@ -32,7 +30,6 @@ export default function ShopDetails() {
       quantity: quantity,
       active: true,
     });
-    setCartOpen(true);
   };
 
   const toggleSidebar = () => setSidebarCollapsed(!sidebarCollapsed);
@@ -246,8 +243,6 @@ export default function ShopDetails() {
           </div>
         </div>
       </div>
-
-      <CartSidebar isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </div>
   );
 }

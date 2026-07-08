@@ -9,7 +9,7 @@ interface HeaderProps {
 }
 
 export default function Header({ onToggleSidebar }: HeaderProps) {
-  const { cartItems } = useCart();
+  const { cartItems, openCart } = useCart();
   const cartCount = cartItems.filter(item => item.active).length;
   const { theme, toggleTheme } = useTheme();
   const [activePopup, setActivePopup] = useState<string | null>(null);
@@ -97,9 +97,9 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
 
           {/* Cart */}
           <div
-            className={`single_action__haeader ${activePopup === 'cart' ? 'active' : ''}`}
-            onClick={() => togglePopup('cart')}
-            style={{ position: "relative" }}
+            className="single_action__haeader"
+            onClick={openCart}
+            style={{ position: "relative", cursor: "pointer" }}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path

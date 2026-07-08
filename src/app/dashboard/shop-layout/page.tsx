@@ -2,7 +2,6 @@
 import { useState } from "react";
 import SideLeft from "../components/SideLeft";
 import Header from "../components/Header";
-import CartSidebar from "../components/CartSidebar";
 import { useCart } from "@/components/header/CartContext";
 import Product from "@/data/Product.json";
 import Link from "next/link";
@@ -24,7 +23,6 @@ export default function ShopLayout() {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(150);
-  const [cartOpen, setCartOpen] = useState(false);
   const { addToCart } = useCart();
 
   const allCategories = ["Beverages", "Biscuits & Snacks", "Breads & Bakery"];
@@ -88,7 +86,6 @@ export default function ShopLayout() {
       quantity: 1,
       active: true,
     });
-    setCartOpen(true);
   };
 
   const filteredProducts = getFilteredProducts();
@@ -261,8 +258,6 @@ export default function ShopLayout() {
           </div>
         </div>
       </div>
-
-      <CartSidebar isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </div>
   );
 }

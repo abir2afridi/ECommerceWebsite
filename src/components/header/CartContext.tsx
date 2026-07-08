@@ -18,6 +18,9 @@ interface CartContextProps {
   removeFromCart: (id: number) => void;
   updateItemQuantity: (id: number, quantity: number) => void;
   isCartLoaded: boolean;
+  cartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -31,6 +34,7 @@ export const useCart = () => {
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartLoaded, setIsCartLoaded] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   // Load from localStorage on first mount
   useEffect(() => {
@@ -66,6 +70,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         return [...prev, item];
       }
     });
+    setCartOpen(true);
   };
 
   // Add item to wishlist (active: false)
@@ -107,6 +112,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         removeFromCart,
         updateItemQuantity,
         isCartLoaded,
+        cartOpen,
+        openCart: () => setCartOpen(true),
+        closeCart: () => setCartOpen(false),
       }}
     >
       {children}
