@@ -15073,39 +15073,9 @@ body {
   width: 273px;
   background: #fff;
   z-index: 999;
-  overflow-y: auto;
-}
-
-/* Enhanced Sidebar Scrollbar */
-.sidebar_left::-webkit-scrollbar {
-  width: 5px;
-}
-.sidebar_left::-webkit-scrollbar-track {
-  background: transparent;
-  margin: 8px 0;
-}
-.sidebar_left::-webkit-scrollbar-thumb {
-  background: rgba(98,157,35,0.25);
-  border-radius: 20px;
-  transition: background 0.3s;
-}
-.sidebar_left::-webkit-scrollbar-thumb:hover {
-  background: rgba(98,157,35,0.55);
-}
-.sidebar_left {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(98,157,35,0.25) transparent;
-}
-
-/* Dark mode sidebar scrollbar */
-html.dark-theme .sidebar_left::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.12);
-}
-html.dark-theme .sidebar_left::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.25);
-}
-html.dark-theme .sidebar_left {
-  scrollbar-color: rgba(255,255,255,0.12) transparent;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -15141,6 +15111,7 @@ html.dark-theme .sidebar_left {
   display: flex;
   align-items: center;
   line-height: 0;
+  flex-shrink: 0;
 }
 
 .sidebar_left .logo > span {
@@ -15203,6 +15174,36 @@ html.dark-theme .sidebar_left {
   list-style: none;
   padding-left: 0;
   margin-top: 35px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.rts-side-nav-area-left::-webkit-scrollbar {
+  width: 5px;
+}
+.rts-side-nav-area-left::-webkit-scrollbar-track {
+  background: transparent;
+}
+.rts-side-nav-area-left::-webkit-scrollbar-thumb {
+  background: rgba(98,157,35,0.25);
+  border-radius: 20px;
+}
+.rts-side-nav-area-left::-webkit-scrollbar-thumb:hover {
+  background: rgba(98,157,35,0.55);
+}
+.rts-side-nav-area-left {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(98,157,35,0.25) transparent;
+}
+
+html.dark-theme .rts-side-nav-area-left::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+}
+html.dark-theme .rts-side-nav-area-left::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.25);
+}
+html.dark-theme .rts-side-nav-area-left {
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
 }
 
 .rts-side-nav-area-left li.single-menu-item {
