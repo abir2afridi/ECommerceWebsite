@@ -101,9 +101,9 @@ const menuItems: MenuItem[] = [
     title: "Blog",
     icon: "/assets/images-dashboard/icons/07.svg",
     children: [
-      { title: "Blog List Left Sidebar", href: "/blog-list-left-sidebar" },
-      { title: "Blog List Right Sidebar", href: "/blog-list-right-sidebar" },
-      { title: "Blog Details", href: "/blog" },
+      { title: "Blog List Left Sidebar", href: "/dashboard/blog-list-left-sidebar" },
+      { title: "Blog List Right Sidebar", href: "/dashboard/blog-list-right-sidebar" },
+      { title: "Blog Details", href: "/dashboard/blog/profitable-business-makes-your-profit-Best-Solution" },
     ],
   },
   {
