@@ -1,5 +1,6 @@
 "use client";
 import { useCart } from "@/components/header/CartContext";
+import { useTheme } from "@/components/header/ThemeContext";
 import Link from "next/link";
 
 interface CartSidebarProps {
@@ -9,8 +10,17 @@ interface CartSidebarProps {
 
 export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
   const { cartItems, removeFromCart, updateItemQuantity } = useCart();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const activeItems = cartItems.filter((item) => item.active);
   const total = activeItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const sidebarBg = isDark ? '#1a1d21' : '#fff';
+  const borderColor = isDark ? '#2d3748' : '#eee';
+  const textColor = isDark ? '#e2e8f0' : '#2C3C28';
+  const btnBg = isDark ? '#2d3748' : '#fff';
+  const btnBorder = isDark ? '#4a5568' : '#ddd';
+  const mutedColor = isDark ? '#a0aec0' : '#999';
 
   return (
     <>
@@ -23,18 +33,18 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           right: isOpen ? 0 : "-400px",
           width: "380px",
           height: "100vh",
-          background: "#fff",
+          background: sidebarBg,
           zIndex: 9999,
-          transition: "right 0.3s ease",
+          transition: "right 0.3s ease, background 0.3s ease",
           boxShadow: isOpen ? "-2px 0 10px rgba(0,0,0,0.1)" : "none",
           display: "flex",
           flexDirection: "column",
         }}
       >
         {/* Header */}
-        <div style={{ padding: "20px", borderBottom: "1px solid #eee", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h5 style={{ margin: 0, fontSize: "16px", fontWeight: 600 }}>Shopping Cart ({activeItems.length})</h5>
-          <button onClick={onClose} style={{ background: "none", border: "none", fontSize: "20px", cursor: "pointer" }}>
+        <div style={{ padding: "20px", borderBottom: `1px solid ${borderColor}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h5 style={{ margin: 0, fontSize: "16px", fontWeight: 600, color: textColor }}>Shopping Cart ({activeItems.length})</h5>
+          <button onClick={onClose} style={{ background: "none", border: "none", fontSize: "20px", cursor: "pointer", color: textColor }}>
             <i className="fa-regular fa-x" />
           </button>
         </div>
@@ -42,28 +52,28 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         {/* Cart Items */}
         <div style={{ flex: 1, overflowY: "auto", padding: "15px 20px" }}>
           {activeItems.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "40px 0", color: "#999" }}>
+            <div style={{ textAlign: "center", padding: "40px 0", color: mutedColor }}>
               <i className="fa-regular fa-cart-shopping" style={{ fontSize: "40px", marginBottom: "15px", display: "block" }} />
               <p>Your cart is empty</p>
             </div>
           ) : (
             activeItems.map((item) => (
-              <div key={item.id} style={{ display: "flex", gap: "15px", padding: "15px 0", borderBottom: "1px solid #eee" }}>
+              <div key={item.id} style={{ display: "flex", gap: "15px", padding: "15px 0", borderBottom: `1px solid ${borderColor}` }}>
                 <img src={item.image} alt={item.title} style={{ width: "70px", height: "70px", objectFit: "cover", borderRadius: "6px" }} />
                 <div style={{ flex: 1 }}>
-                  <h6 style={{ margin: 0, fontSize: "14px", fontWeight: 500 }}>{item.title}</h6>
+                  <h6 style={{ margin: 0, fontSize: "14px", fontWeight: 500, color: textColor }}>{item.title}</h6>
                   <p style={{ margin: "5px 0", fontSize: "14px", color: "#DC2626", fontWeight: 600 }}>₹{item.price}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     <button
                       onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
-                      style={{ width: "28px", height: "28px", border: "1px solid #ddd", borderRadius: "4px", background: "#fff", cursor: "pointer" }}
+                      style={{ width: "28px", height: "28px", border: `1px solid ${btnBorder}`, borderRadius: "4px", background: btnBg, color: textColor, cursor: "pointer" }}
                     >
                       -
                     </button>
-                    <span style={{ fontSize: "14px" }}>{item.quantity}</span>
+                    <span style={{ fontSize: "14px", color: textColor }}>{item.quantity}</span>
                     <button
                       onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
-                      style={{ width: "28px", height: "28px", border: "1px solid #ddd", borderRadius: "4px", background: "#fff", cursor: "pointer" }}
+                      style={{ width: "28px", height: "28px", border: `1px solid ${btnBorder}`, borderRadius: "4px", background: btnBg, color: textColor, cursor: "pointer" }}
                     >
                       +
                     </button>
@@ -71,7 +81,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  style={{ background: "none", border: "none", color: "#999", cursor: "pointer", alignSelf: "flex-start" }}
+                  style={{ background: "none", border: "none", color: mutedColor, cursor: "pointer", alignSelf: "flex-start" }}
                 >
                   <i className="fa-regular fa-x" />
                 </button>
@@ -82,9 +92,9 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
 
         {/* Footer */}
         {activeItems.length > 0 && (
-          <div style={{ padding: "20px", borderTop: "1px solid #eee" }}>
+          <div style={{ padding: "20px", borderTop: `1px solid ${borderColor}` }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "15px", fontSize: "16px" }}>
-              <span>Subtotal:</span>
+              <span style={{ color: textColor }}>Subtotal:</span>
               <span style={{ fontWeight: 600, color: "#DC2626" }}>₹{total.toFixed(2)}</span>
             </div>
             <div style={{ display: "flex", gap: "10px" }}>
