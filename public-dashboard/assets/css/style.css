@@ -15076,6 +15076,38 @@ body {
   overflow-y: auto;
 }
 
+/* Enhanced Sidebar Scrollbar */
+.sidebar_left::-webkit-scrollbar {
+  width: 5px;
+}
+.sidebar_left::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px 0;
+}
+.sidebar_left::-webkit-scrollbar-thumb {
+  background: rgba(98,157,35,0.25);
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+.sidebar_left::-webkit-scrollbar-thumb:hover {
+  background: rgba(98,157,35,0.55);
+}
+.sidebar_left {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(98,157,35,0.25) transparent;
+}
+
+/* Dark mode sidebar scrollbar */
+html.dark-theme .sidebar_left::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+}
+html.dark-theme .sidebar_left::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.25);
+}
+html.dark-theme .sidebar_left {
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .sidebar_left {
     left: -273px;
@@ -19679,6 +19711,34 @@ edit .quantity-edit button {
 body {
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+/* Enhanced Body Scrollbar */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 20px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.25);
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.12) transparent;
+}
+html.dark-theme body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+}
+html.dark-theme body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
+html.dark-theme body {
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
 }
 
 .kMgreK {
