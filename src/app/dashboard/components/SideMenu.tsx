@@ -95,7 +95,7 @@ const menuItems: MenuItem[] = [
   {
     title: "Contact",
     icon: "/assets/images-dashboard/icons/06.svg",
-    href: "/contact",
+    href: "/dashboard/contact",
   },
   {
     title: "Blog",
