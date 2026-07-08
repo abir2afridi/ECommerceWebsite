@@ -29,17 +29,17 @@ export default function ShopLayout() {
   const allBrands = ["Frito Lay", "Nespresso", "Oreo", "Quaker", "Welch's"];
 
   const categoryProductIndices: { [key: string]: number[] } = {
-    Beverages: [1, 3, 4, 5, 6, 7],
-    "Biscuits & Snacks": [8, 9, 10, 12, 16],
-    "Breads & Bakery": [15, 1, 2, 3],
+    Beverages: [1, 2, 3, 4, 5, 6, 7, 8],
+    "Biscuits & Snacks": [9, 10, 11, 12, 13, 14],
+    "Breads & Bakery": [15, 16, 17, 18, 19, 20, 21, 22, 23],
   };
 
   const brandProductIndices: { [key: string]: number[] } = {
-    "Frito Lay": [1, 3, 4],
-    Nespresso: [3, 1, 4],
-    Oreo: [8, 9, 10],
-    Quaker: [3, 4, 10],
-    "Welch's": [8, 9, 1],
+    "Frito Lay": [1, 2, 3, 4, 5],
+    Nespresso: [6, 7, 8, 9, 10],
+    Oreo: [11, 12, 13, 14, 15],
+    Quaker: [16, 17, 18, 19, 20],
+    "Welch's": [21, 22, 23],
   };
 
   const toggleSidebar = () => setSidebarCollapsed(!sidebarCollapsed);
